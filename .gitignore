@@ -1,0 +1,9 @@
+# Ignore File named 'testourprj.py'
+testourprj.py
+
+
+# Ignore folder named 'OurPrj'
+OurPrj/
+
+# Ignore all .mat files
+*.mat
