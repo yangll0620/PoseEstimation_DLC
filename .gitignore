@@ -1,9 +1,8 @@
-# Ignore File named 'testourprj.py'
-testourprj.py
-
-
-# Ignore folder named 'OurPrj'
-OurPrj/
+# Ignore folder named 'dlcProjects'
+dlcProjects/
 
 # Ignore all .mat files
 *.mat
+
+# Ignore the checkpoints folder
+.ipynb_checkpoints

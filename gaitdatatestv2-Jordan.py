@@ -6,8 +6,8 @@ import csv
 prjexist = True
 framesextracted, frameslabeled = True, True # tags for whether frames are already extracted or labeled (True) or not (False)
 traindatasetexist = True # traindatasetexist for whether train dateset exist (True) or not (False)
-tag_train = True # need to train or not
-tag_evaluation = True # tags for whether evaluation and anlyze functions are needed (True) or not (False)
+tag_train = False # need to train or not
+tag_evaluation = False # tags for whether evaluation and anlyze functions are needed (True) or not (False)
 tag_analyze, tag_createlabel = True, True # tags for whether anlyze and createlabel functions are needed (True) or not (False)
 
 
@@ -68,15 +68,31 @@ else:
 
 
 if tag_analyze or tag_createlabel: 
-	newvideo_path = [os.path.join(path_prj, 'videos','Az_Neural.avi')] # absulate path for new videos which will be analyzed, [] is nesserary
-	
+	animal = 'bug'
+	newvideo_path = os.path.join(path_prj, 'videostoanalyze', animal) 
+	newvideos = [os.path.join(newvideo_path, 'CPB15_120418.mp4')]
+
+	# animal = 'Az'
+ #    # Az/
+	# newvideo_path = os.path.join(path_prj, 'videostoanalyze', animal) 
+	# newvideos = [os.path.join(newvideo_path, 'Az_Neural-190128_Azula-190128-141757_Cam1.avi'), \
+	# 			 os.path.join(newvideo_path, 'Az_Neural-190313_Azula-190313-124618_Cam1.avi'), \
+	# 			 os.path.join(newvideo_path, 'Az_Neural-190410_Azula-190410-120937_Cam1.avi')] 
+
+	# # Az/turningbehavior
+	# newvideo_path = os.path.join(path_prj, 'videostoanalyze', animal,'turningbehavior') 
+	# newvideos = [os.path.join(newvideo_path, 'Az_Neural-190128_Azula-190128-141757_Cam2.avi'), \
+	# 			 os.path.join(newvideo_path, 'Az_Neural-190228_Azula-190228-121940_Cam2.avi'), \
+	# 			 os.path.join(newvideo_path, 'Az_Neural-190228_Azula-190228-123038_Cam2.avi'), \
+	# 			 os.path.join(newvideo_path, 'Az_Neural-190410_Azula-190410-120937_Cam2.avi'), \
+	# 			 os.path.join(newvideo_path, 'Az_Neural-190410_Azula-190410-122407_Cam2.avi')] 
 	if tag_analyze:
 		# analyze new video
-		deeplabcut.analyze_videos(path_config_file, newvideo_path,save_as_csv = True, videotype = '.avi')
+		deeplabcut.analyze_videos(path_config_file, newvideos,save_as_csv = True, videotype = '.mp4')
 
 	if tag_createlabel:
 		# create labeled video in .mp4
-		deeplabcut.create_labeled_video(path_config_file,newvideo_path)
+		deeplabcut.create_labeled_video(path_config_file,newvideos)
 	
 # plot trajectories
-#deeplabcut.plot_trajectories(path_config_file, newvideo_path)
+#deeplabcut.plot_trajectories(path_config_file, newvideos)
